@@ -7,6 +7,12 @@
 * `wn.constants.RELATION_INFO` ([#75])
 * `wn.constants.SENSE_SYNSET_RELATIONS`
 
+### Schema
+
+* Removed all constant lookup tables and related foreign key
+  references ([#75])
+* Parts of speech are stored as text
+
 ## [v0.4.0]
 
 **Release date: 2020-12-29**

@@ -20,11 +20,6 @@ logger = logging.getLogger('wn')
 
 BATCH_SIZE = 1000
 
-POS_QUERY = '''
-    SELECT p.rowid
-      FROM parts_of_speech AS p
-     WHERE p.pos = ?
-'''
 ENTRY_QUERY = '''
     SELECT e.rowid
       FROM entries AS e
@@ -200,7 +195,7 @@ def _insert_ilis(synsets, cur, callback):
 
 def _insert_synsets(synsets, lex_id, cur, callback):
     callback(0, status='Synsets')
-    query = f'INSERT INTO synsets VALUES (null,?,?,?,({POS_QUERY}),?,?)'
+    query = 'INSERT INTO synsets VALUES (null,?,?,?,?,?,?)'
     for batch in _split(synsets):
         data = (
             (synset.id,
@@ -254,7 +249,7 @@ def _insert_synset_relations(synsets, lexid, cur, callback):
 
 def _insert_entries(entries, lex_id, cur, callback):
     callback(0, status='Words')
-    query = f'INSERT INTO entries VALUES (null,?,?,({POS_QUERY}),?)'
+    query = 'INSERT INTO entries VALUES (null,?,?,?,?)'
     for batch in _split(entries):
         data = (
             (entry.id,
